@@ -68,5 +68,85 @@ class f_list{
            return prev;
        }
     
-       
+       Node<T>* begin(){
+             return this->head;
+       }
+ 
+       Node<T>* end(){
+           return this->tail;
+       }
+ 
+       bool isempty(){
+           return this->head==nullptr && f_list_size==0;
+       }
+ 
+       T& back(){
+           return this->tail->m_data;
+       }
+
+        T& front(){
+           return this->head->m_data;
+       }
+        
+        void removefromfront(){
+            if(head==nullptr){return;}
+            Node<T>* temp= this->head;
+            this->head=this->head->m_next;
+            delete temp;
+            this->f_list_size-=1;
+        }
+
+        void removefromback(){
+            if(head==nullptr){return;}
+            Node<T>* curr= this->head;
+            Node<T>* prev= nullptr;
+            while(curr->m_next!=nullptr){   
+                prev=curr;
+             curr=curr->m_next; 
+        }
+      this->tail=prev;
+      this->tail->m_next=nullptr;
+      this->f_list_size-=1;
+        }
+        
+        void insertat(T data, int index){
+            if(index<0 || index>f_list_size){return;}
+            else{
+                Node<T>* temp= this->head;
+                 Node<T>* prev= nullptr;
+                int i=0;
+                while(i<index){
+                    prev=temp;
+                    temp=temp->m_next;
+                    i++;
+                }
+               Node<T>* new_node= new Node<T>(data);
+                prev->m_next=new_node;
+                new_node-> m_next= temp;
+            }
+        }
+        
+        void removeat(int index){
+            if(this->head==nullptr){return;}
+
+            Node<T>* temp=this->head;
+            int i=0;
+            Node<T>* prev=nullptr;
+            while(i<index){
+                prev=temp;
+                temp=temp->m_next;
+                i++;
+            }
+            prev->m_next=temp->m_next;
+            temp->m_next=nullptr;
+        }
+        
+        f_list& operator=(f_list& f2){
+            this->head=f2.head;
+            this->tail=f2.tail;
+            return *this;
+        }
+
+
+    
  };
