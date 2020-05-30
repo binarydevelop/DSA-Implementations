@@ -25,7 +25,6 @@ class d_list{
          }
 
        void addashead(T data){
-          
           if(this->head==nullptr){
             Node<T>* curr_node=new Node<T>(nullptr,data,nullptr);
             this->head=curr_node;
