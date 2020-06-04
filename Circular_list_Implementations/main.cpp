@@ -12,6 +12,6 @@ int main(){
     c1.insertat(430,2);
     c1.deleteat(1);
     c1.printlist();
- 
+    c1.search(70);
     return 0;
 }

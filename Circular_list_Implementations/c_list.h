@@ -50,7 +50,7 @@ class c_list{
         
     }
 
-    void insertat(int value,int pos){
+    void insertat(T value,int pos){
         if(pos <0 && pos>c_list_size){
             return ;
         }else{
@@ -92,8 +92,24 @@ class c_list{
         }
     }
    
-     void search(){
-
+     void search(T value){
+        int i=0;
+        Node<T>* temp=this->last->m_next;
+        if(temp->m_data==value){
+            std::cout<<"Found at head";
+        }else if(this->last->m_data==value){
+            std::cout<<"FOUND at last";
+        }else{
+            while(temp!=last){
+               i++;
+                if(temp->m_data==value){
+                    std::cout<<"Found at "<<i;
+                    return;
+                }
+                 temp=temp->m_next;
+            }
+        }
     }
+    
     
 };
