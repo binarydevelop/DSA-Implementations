@@ -27,15 +27,15 @@ Structure of Stack
     * items : array of item
 ## Push Operation
 
-## push( stk, x):
+### push( stk, x):
     if stk.top = stk.maxsize:
         report overflow error
     else:
         stk.items[stk.top] ← x
         stk.top ← stk.top + 1
-## Pop Operation
+### Pop Operation
 
-pop(stk):
+## pop(stk):
     if stk.top = 0:
         report underflow error
     else:
