@@ -11,9 +11,8 @@ class Queue{
      Queue(int siz){
          if(siz>0){
          top=-1;
-         length=siz;
          rear=-1;
-         array= new T[length];
+         array= new T[siz];
          }
      }
      void enqueue(T value){
@@ -21,6 +20,7 @@ class Queue{
             return ;}else
          if(rear==-1){
              ++rear;
+//find the value of rear here
              ++top;
              array[rear]=value;
              length+=1;}
@@ -40,7 +40,9 @@ class Queue{
      
      void dequeue(){
          if(top==-1){return ;}
-         else{top=top+1;}
+         else{
+             --length;
+             top+=1;}
      }
-   
+     int getsize(){return this->length;}
 };
