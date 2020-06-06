@@ -2,7 +2,8 @@
 template<class T>
 class Queue{
      private:
-        int length;
+        int capacity;
+        int size;
         int top;
         int rear;
         T* array;
@@ -12,22 +13,27 @@ class Queue{
          if(siz>0){
          top=-1;
          rear=-1;
-         array= new T[siz];
+         capacity=siz;
+         size=0;
+         array= new T[capacity];
          }
      }
      void enqueue(T value){
-         if(rear==length-1){
-            return ;}else
+         
+         if(rear==capacity-1){
+             
+            return ;}
+         else
          if(rear==-1){
              ++rear;
 //find the value of rear here
              ++top;
              array[rear]=value;
-             length+=1;}
+             ++size;}
          else{
                 ++rear;
                 array[rear]=value;
-                length+=1;
+                ++size;
          } 
      }
    
@@ -41,8 +47,9 @@ class Queue{
      void dequeue(){
          if(top==-1){return ;}
          else{
-             --length;
+             --size;
              top+=1;}
      }
-     int getsize(){return this->length;}
+     int getsize(){return this->size;}
+     int getcapacity(){return this->capacity;}
 };
