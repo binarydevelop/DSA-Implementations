@@ -186,5 +186,21 @@ class b_tree{
 }
 
       //height of the binary tree 
+      int height_of_tree(){
+          return height_of_tree(this->root);
+      }
+      int height_of_tree(Node<T>* root){
+          //base case
+          //If we are passing a leaf node then we need to return -1 so the height cancels out with +1.
+          if(root==nullptr){return 0;}
+          int ldepth= height_of_tree(root->left);
+          int rdepth= height_of_tree(root->right);
+          if(ldepth>rdepth){
+              return ldepth+1;
+          }
+          else{
+              return rdepth+1;
+          }
+      }
 
 };

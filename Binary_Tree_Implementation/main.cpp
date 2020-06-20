@@ -3,7 +3,7 @@
 using namespace std;
 int main(){
     
-                                                          /*   45
+                                                          /*   45  
                                                             /   \
                                                             24    154
                                                           /  \     / \
@@ -35,5 +35,6 @@ int main(){
    b1.levelorder_traversal();
    cout<<"\n";
    cout<<std::boolalpha<<b1.searchnode(21);
+   cout<<b1.height_of_tree();
     return 0;
 }
