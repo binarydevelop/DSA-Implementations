@@ -84,6 +84,7 @@ class b_tree{
           postorder_traversal(node->right);
           std::cout<<node->m_data<<" ";
       }
+      
       //levelorder traversal(Breadth First)
       void levelorder_traversal(){
         std::queue <Node<T>* > q;
@@ -93,18 +94,96 @@ class b_tree{
         q.push(this->root);
         while(!q.empty()){ 
             Node<T>* current= q.front();
+            q.pop();
             std::cout<<current->m_data<<" ";
             if(current->left!=nullptr){
-                q.push(current->left);
+                q.push(current->left);   
             }
             if(current->right!=nullptr){
-            q.push(current->right);
+                q.push(current->right); 
             }
-            q.pop();
+            
+   
     }
 }
       
+      //remove_node
+      void removenode(Node<T>* root, Node<T>* node_to_delete){
+            if(root==nullptr){return ;}
+            if(root== node_to_delete){
+                delete node_to_delete;
+                root==nullptr;
+                return ;
+            }
+            if(root->left==node_to_delete){
+                delete node_to_delete;
+                root->left=nullptr;
+                return ;
+            }
+             if(root->right==node_to_delete){
+                delete node_to_delete;
+                root->right=nullptr;
+                return ;
+            }
+       removenode(root->left, node_to_delete);
+       removenode(root->right,node_to_delete);
+      }
+
       //deletion of node
+      void delete_node(T data){
+          if(root==nullptr){
+              return ;
+          }
+          if(root->left==nullptr && root->right==nullptr){
+              if( root->m_data==data){
+                   delete root;
+                   root=nullptr;
+              }
+          }
+          
+              std::queue<Node<T>* > Q;
+              Q.push(this->root);
+              Node<T>* curr_node=nullptr;
+              Node<T>* key_node=nullptr;
+              
+              while(!Q.empty()){
+                  curr_node= Q.front();
+                  Q.pop();
+                  if(curr_node->m_data==data){
+                      key_node=curr_node;
+                  }
+                  if(curr_node->left){
+                      Q.push(curr_node->left);
+                  }
+                  if(curr_node->right){
+                      Q.push(curr_node->right);
+                  } 
+              }
+              //at the end of queue current node becomes the last node.
+              if(key_node){
+              key_node->m_data=curr_node->m_data;
+              removenode(this->root,key_node);
+              }
+              else{
+                  return ;}
+          }
+      
+      //searchnode
+     bool searchnode(T data){
+              std::queue<Node<T>* > Q;
+              Q.push(this->root);
+              while(!Q.empty()){
+                  Node<T>* curr_node;
+                  curr_node= Q.front();
+                  Q.pop();
+                  if(curr_node->m_data==data){
+                     return true;
+                  }
+                    if(curr_node->left){Q.push(curr_node->left);}
+                    if(curr_node->right){Q.push(curr_node->right);}      
+     }
+     return false;
+}
 
       //height of the binary tree 
 

@@ -6,10 +6,10 @@ int main(){
                                                           /*   45
                                                             /   \
                                                             24    154
-                                                          / \     / \
-                                                        2434 1034 243 103
-                                                          /
-                                                        274
+                                                          /  \     / \
+                                                        2434  1034 243 103
+                                                          /\    /
+                                                        274 20 21
                                                           */
   b_tree<int> b1;
 
@@ -21,12 +21,19 @@ int main(){
   b1.addnode_levelorder(243);
   b1.addnode_levelorder(103);
   b1.addnode_levelorder(274);
+  b1.addnode_levelorder(20);
+  b1.addnode_levelorder(21);
   b1.levelorder_traversal();
   cout<<"\n";
   b1.preorder_traversal();
   cout<<"\n";
   b1.inorder_traversal();
   cout<<"\n";
-   b1.postorder_traversal();
+   b1.levelorder_traversal();
+   b1.delete_node(103);
+    cout<<"\n";
+   b1.levelorder_traversal();
+   cout<<"\n";
+   cout<<std::boolalpha<<b1.searchnode(21);
     return 0;
 }
