@@ -16,8 +16,12 @@ int main(){
      b1.addnode(18);
      b1.addnode(31);
      b1.addnode(34);
-     b1.level_order_traversal();
      
+     cout<<b1.searchkey(340);
+     
+     bst<char> b2;
+    
 
     return 0;
 }
+       
