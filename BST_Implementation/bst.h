@@ -45,6 +45,7 @@ class bst{
         void addnode(T data){
          addnode(this->root,data);
      }
+       
         void deletree(Node<T>* node){
             if(node){
                  deletree(node->m_left);
@@ -111,23 +112,11 @@ class bst{
             Node<T>* node =this->root;
             postorder_traversal(node);
         }
-
-        void deletenode(T key){
-            if(this->root==nullptr){
-                  std::cout<<"Tree is empty";
-              }
-              //node is leaf
-              
-              //node has a single child though the child can have two children
-           //node is the root itself
-              //node has more than one child
-            
-        }
+        //searching key
          Node<T>* searchkey(T data) { 
         return searchkey(data,this->root);
 }
-
-   Node<T>* searchkey(T data, Node<T> *node) {
+         Node<T>* searchkey(T data, Node<T> *node) {
     if (node == nullptr) { // <-- check if node is null
         return node;
     } else if (node->m_data > data) {
@@ -137,4 +126,83 @@ class bst{
     }
     return node; // match found
 }
+        //deleting node
+        
+         Node<T>* deletenode(T data){
+             return deletenode(data, this->root);
+         }
+        /*
+        I don't understand why are we setting this" Start by understanding this part. 
+        The reason is because in general you might have the subtree rebalanced due of the deletion of a node,
+        so the root of the subtree might change. You can easily see this by imagining that the key is just in the root of your - let's say - left subtree.
+        In this case deletenode would return nullptr and the whole subtree is lost.
+        The right way would be to have deletenode
+        return the new root of the subtree after making a new subtree from left and right parts. 
+        */
+         Node<T>* deletenode(T data, Node<T>* node){
+                    //base case
+                    if(node==nullptr){
+                        return node;
+                    }
+                    else if(data<node->m_data){
+                        node->m_left=deletenode(data,node->m_left);
+                    }
+                    else if(data>node->m_data){
+                        node->m_right=deletenode(data,node->m_right);
+                    }
+                    else{
+                        //1st case
+                    if(node->m_left==nullptr && node->m_right==nullptr){
+                        delete node;
+                        node=nullptr;   
+                    }
+                       //2nd case
+                       
+                    else if(node->m_left==nullptr){
+                        Node<T>* temp=nullptr;
+                        temp=node;
+                        node=node->m_right;
+                        delete temp;
+                    }
+                    else if(node->m_right==nullptr){
+                        Node<T>* temp=nullptr;
+                        temp=node;
+                        node=node->m_left;
+                        delete temp;
+                    }
+                       
+                    //3rd case
+                    else{
+                        Node<T>* temp=nullptr;
+                        temp=findmin(node->m_right);
+                        node->m_data=temp->m_data;
+                        node->m_right=deletenode(temp->m_data,node->m_right);
+                    }
+         }
+         return node;
+         }    
+
+         Node<T>* findmax(){
+           return findmax(this->root);
+         }
+
+         Node<T>* findmax(Node<T>* node){
+             if(node==nullptr){return node;}
+            else if(node->m_right==nullptr){
+                return node;
+            }
+            return findmax(node->m_right);
+         }
+
+         Node<T>* findmin(){
+           return findmin(this->root);
+         }
+
+         Node<T>* findmin(Node<T>* node){
+             if(node==nullptr){return node;}
+            else if(node->m_left==nullptr){
+                return node;
+            }
+            return findmin(node->m_left);
+         }
 };
