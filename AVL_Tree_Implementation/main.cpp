@@ -15,7 +15,11 @@ int main(){
     a1.add_node(19);
       a1.add_node(16);
  
-  a1.level_order();
+a1.pre_order();
+cout<<"\n";
+a1.post_order();
+cout<<"\n";
+a1.in_order();
  
   
 }

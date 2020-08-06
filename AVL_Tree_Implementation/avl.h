@@ -109,8 +109,39 @@ class avl{
            }
     }
     //PRE-ORDER_TRAVERSAL
+    void pre_order(){
+        pre_order(this->root);
+    }
+    Node<T>* pre_order(Node<T>* node){
+        if(node==nullptr){return nullptr;}
+        std::cout<<node->m_data<<" ";
+        node->m_left=pre_order(node->m_left);
+        node->m_right=pre_order(node->m_right);
+        return node;
+    }
     //POST-ORDER_TRAVERSAL
+    void post_order(){
+        post_order(this->root);
+    }
+    Node<T>* post_order(Node<T>* node){
+        if(node==nullptr){return nullptr;}
+        
+        node->m_left=post_order(node->m_left);
+        node->m_right=post_order(node->m_right);
+        std::cout<<node->m_data<<" ";
+        return node;
+    }
     //IN-ORDER_TRAVERSAL
+     void in_order(){
+        in_order(this->root);
+    }
+    Node<T>* in_order(Node<T>* node){
+        if(node==nullptr){return nullptr;}
+        node->m_left=in_order(node->m_left);
+        std::cout<<node->m_data<<" ";
+        node->m_right=in_order(node->m_right);
+        return node;
+    }
     //DELETE_NODE
     //SEARCH
     
