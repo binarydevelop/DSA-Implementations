@@ -17,15 +17,13 @@ int main(){
  
   cout<<"\n";
 
-a1.level_order();
+
+cout<<a1.search(3210);
 
 
 
-a1.delete_node(19);
-a1.delete_node(16);
 
-cout<<"\n";
 
-a1.level_order();
+
   
 }

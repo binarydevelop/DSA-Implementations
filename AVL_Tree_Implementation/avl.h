@@ -220,5 +220,24 @@ class avl{
     }
     
     //SEARCH
+    bool search(T data){
+        if(is_node(data,this->root)){
+            return true;
+        }else{return false;}
+    }
+    Node<T>* is_node(T data,Node<T>* node){
+        if(node==nullptr){return nullptr;}
+        else{
+            if(data<node->m_data){
+                return is_node(data,node->m_left);
+            }
+            if(data>node->m_data){
+                return is_node(data,node->m_right);
+            }
+       
+        }
+        return node;
+       
+    }
     
 };
