@@ -6,12 +6,9 @@ int main(){
      
      bst<int> b1;
      
-     b1.addnode(20);
-    
-     b1.addnode(33);
-     
+     b1.addnode(20);    
+     b1.addnode(33);    
      b1.addnode(17);
-   
      b1.addnode(14);
      b1.addnode(18);
      b1.addnode(31);

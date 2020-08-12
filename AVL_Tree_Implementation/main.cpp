@@ -18,7 +18,7 @@ int main(){
   cout<<"\n";
 
 
-cout<<a1.search(3210);
+cout<<a1.search(30);
 
 
 
