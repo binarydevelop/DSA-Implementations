@@ -38,7 +38,7 @@ public:
 		if(node==nullptr){return ;}
 		else{
 			inorder(node->m_left);
-			std::cout<<node->m_data;
+			std::cout<<node->m_data<<" ";
 			inorder(node->m_right);
 		}
 	}
@@ -57,50 +57,52 @@ public:
 		
 	}
 	
-	// rotate m_left at node x
-	void left_rotate(Node<T>* x) {
-		Node<T>* y = x->m_left;
-		x->m_left = y->m_left;
-		if (y->m_left != nullptr) {
-			y->m_left->m_parent = x;
-		}
-		y->m_parent = x->m_parent;
-		if (x->m_parent == nullptr) {
-			this->root = y;
-		} else if (x == x->m_parent->m_left) {
-			x->m_parent->m_left = y;
-		} else {
-			x->m_parent->m_right = y;
-		}
-		y->m_left = x;
-		x->m_parent = y;
-	}
+ void left_rotate(Node<T>* node){
+     if(node==nullptr){return ;}
+     else{
+         Node<T>* temp= node->m_right;
+         node->m_right=temp->m_left;
+         if(temp->m_left){
+             temp->m_left->m_parent=node;
+         }
+         temp->m_parent=node->m_parent;
+         if(node->m_parent==nullptr){
+             this->root=temp;
+         }else if(node==node->m_parent->m_left){
+             node->m_parent->m_left=temp;
+         }else if(node== node->m_parent->m_right){
+             node->m_parent->m_right=temp;
+         }
+         temp->m_left=node;
+         node->m_parent=temp;
+     }
+    
+ }
+void right_rotate(Node<T>* node){
+        Node<T>* temp=node->m_left;
+        node->m_left=temp->m_right;
+        if(temp->m_right){
+            temp->m_right->m_parent=node;
+        }
+        temp->m_parent= node->m_parent;
+        if(node->m_parent==nullptr){
+            this->root=temp;
+        }else if(node==node->m_parent->m_left){
+            node->m_parent->m_left=temp;
+        }else if(node== node->m_parent->m_right){
+            node->m_parent->m_right=temp;
+        }
+        temp->m_right=node;
+        node->m_parent=temp;
+   }
 
-	// rotate m_left at node x
-	void right_rotate(Node<T>* x) {
-		Node<T>* y = x->m_left;
-		x->m_left = y->m_left;
-		if (y->m_left != nullptr) {
-			y->m_left->m_parent = x;
-		}
-		y->m_parent = x->m_parent;
-		if (x->m_parent == nullptr) {
-			this->root = y;
-		} else if (x == x->m_parent->m_left) {
-			x->m_parent->m_left = y;
-		} else {
-			x->m_parent->m_left = y;
-		}
-		y->m_left = x;
-		x->m_parent = y;
-	}
    //splay Function
       void splay(Node<T>* node){
 		while(node->m_parent){
 			if(!node->m_parent->m_parent){
 				if(node==node->m_parent->m_left){//zig Rotation
 					right_rotate(node->m_parent);
-				}else if(node==node->m_right){
+				}else if(node==node->m_parent->m_right){
 					left_rotate(node->m_parent);
 				}
 			}

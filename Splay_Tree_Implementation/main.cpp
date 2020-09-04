@@ -12,6 +12,6 @@ s1.insert(21);
 s1.insert(24);
 
 s1.insert(2334);
-
+s1.inorder();
   return 0;
 }
